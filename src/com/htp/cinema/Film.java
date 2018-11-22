@@ -1,6 +1,6 @@
 package com.htp.cinema;
 
-class Film {
+public class Film {
 
     static class Body {
 
