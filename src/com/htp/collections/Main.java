@@ -6,9 +6,10 @@ import com.htp.collections.books.comparator.BookByAuthorSurnameComparator;
 import com.htp.collections.students.Student;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,20 +41,6 @@ public class Main {
         Book book23 = new Book("Фантастические твари и где они обитают", 20.19, "Джоан", "Роулинг");
         Book book24 = new Book("Спящие красавицы", 20.72, "Стивен", "Кинг");
         Book book25 = new Book("Идиот", 6.61, "Фёдор", "Достоевский");
-
-
-        Student student1 = new Student("Иванов","A1");
-        Student student2 = new Student("Петров","A2");
-        Student student3 = new Student("Сидоров","A3");
-        Student student4 = new Student("Николай","A4");
-
-
-        Set<Student> students = new HashSet<>();
-
-        students.add(student1);
-        students.add(student2);
-        students.add(student3);
-        students.add(student4);
 
         List<Book> list = new LinkedList<>();
 
@@ -108,12 +95,33 @@ public class Main {
         hashList.stream().sorted(new BookByAuthorSurnameComparator()).forEach(System.out::println);
 
         System.out.println("\nСортировка по гласным буквам");
+
         Pattern compile = Pattern.compile("^([ауеиэюяоё]).*$");
+        TreeSet<Student> treeSet = new TreeSet<>();
         for (Book book : hashList) {
             Matcher matcher = compile.matcher(book.getTitle().toLowerCase());
             if (matcher.find()) {
                 System.out.println(book.toString());
             }
         }
+        System.out.println("\nСписок студентов: ");
+
+        treeSet.add(new Student("Егор", "2"));
+        treeSet.add(new Student("Николай", "1"));
+        treeSet.add(new Student("Семён", "2"));
+        treeSet.add(new Student("Евгений", "1"));
+        treeSet.add(new Student("Антон", "2"));
+
+        treeSet.forEach(System.out::println);
+
+        Iterator<Student> iterator = treeSet.iterator();
+
+        while (iterator.hasNext()) {
+            Student nextStudent = iterator.next();
+            if (nextStudent.getGroup().equals("1")) {
+                iterator.remove();
+            }
+        }
+        System.out.println("\n" + treeSet);
     }
 }

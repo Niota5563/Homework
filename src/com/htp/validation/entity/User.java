@@ -7,6 +7,9 @@ public class User {
     private int age;
     private ExceptionSexEnum sex;
 
+    public User() {
+    }
+
     public User(String name, String login, String password, int age, ExceptionSexEnum sex) {
         this.name = name;
         this.login = login;

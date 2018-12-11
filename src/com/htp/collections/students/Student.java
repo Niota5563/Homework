@@ -2,10 +2,10 @@ package com.htp.collections.students;
 
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparable<Student> {
 
-private String name;
-private String group;
+    private String name;
+    private String group;
 
     public Student() {
     }
@@ -52,5 +52,10 @@ private String group;
                 "name='" + name + '\'' +
                 ", group='" + group + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return name.compareTo(o.getName());
     }
 }
